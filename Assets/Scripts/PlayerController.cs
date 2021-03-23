@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 //sing CodeMonkey.Utils;
+//Note to future self, next time I work on this, fix the spawnAngle stuff.
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    int getFollowAngle(int i, int j) 
+    int getSpawnAngle(int i, int j) 
     {
         return numOfFollowers[i,j];
     }

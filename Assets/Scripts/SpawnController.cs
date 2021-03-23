@@ -9,7 +9,7 @@ public class SpawnController : MonoBehaviour
     public GameObject enemy;
     private GameObject player;
     private Transform playerTransform;
-    private float spawnInterval = 2;
+    private float spawnInterval = 3;
     private float startDelay = 1.0f;
     private float spawnRangeX;
     private float spawnRangeZ;
