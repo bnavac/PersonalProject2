@@ -21,6 +21,8 @@ public class PlayerFollower : MonoBehaviour
         followerRb = GetComponent<Rigidbody>();
         playerTransform = followedObject.transform;
         offset.x = transform.position.x - playerTransform.position.x;
+        offset.z = transform.position.z - playerTransform.position.z;
+        transform.position = new Vector3(offset.x, 1, offset.z);
         //spawnAngle = player.GetComponent<PlayerController>.getgetSpawnAngle();
     }
 
