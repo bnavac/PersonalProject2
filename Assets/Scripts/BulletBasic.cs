@@ -9,25 +9,23 @@ public class BulletBasic : MonoBehaviour
     public GameObject enemy;
     public GameObject parentObj;
     private Transform enemyTransform;
+    private Vector3 enemyPos;
     // Start is called before the first frame update
     void Start()
     {
         enemy = gameObject.GetComponentInParent<MinionBasic>().enemy;
         enemyTransform = enemy.transform;
         bulletRb = GetComponent<Rigidbody>();
+        transform.LookAt(enemyTransform);
+        enemyPos = enemyTransform.position;
+        Destroy(this.gameObject, 10);
     }
 
     // Update is called once per frame
     void Update()
     {
         float step = speed * Time.deltaTime;
-        transform.LookAt(enemyTransform);
-        if (enemy == null) 
-        {
-            Debug.Log("true");
-            Destroy(this.gameObject);
-        }
-        transform.position = Vector3.MoveTowards(transform.position, enemyTransform.position, step);
+        transform.position = Vector3.MoveTowards(this.transform.position, enemyPos, step);
         
     }
 }

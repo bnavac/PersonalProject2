@@ -7,6 +7,7 @@ public class SpawnController : MonoBehaviour
 {
     public GameObject[] enemies;
     public GameObject enemy;
+    public GameObject range;
     private GameObject player;
     private Transform playerTransform;
     private float spawnInterval = 3;
@@ -18,6 +19,7 @@ public class SpawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        range = GameObject.Find("Range");
         player = GameObject.Find("Player");
         enemy = GameObject.Find("EnemyBasic Variant");
         playerTransform = player.transform;

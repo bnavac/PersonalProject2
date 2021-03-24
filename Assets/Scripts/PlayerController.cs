@@ -12,9 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 12.0f;
     public int[,] numOfFollowers = new int[2, 8];
     Rigidbody playerRb;
-    //private float mouseXInput;
-    //private float mouseYInput;
-    //private Vector3 targetPos;
+    public Vector3 inputs;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +39,14 @@ public class PlayerController : MonoBehaviour
     public float getSpeed()
     {
         return speed;
+    }
+    void OnCollisionEnter(Collision other) 
+    {
+        if (other.gameObject.CompareTag("Enemy")) 
+        {
+            Destroy(this.gameObject);
+            Debug.Log("Game Over");
+        }
     }
     // Update is called once per frame
     /*void Update()

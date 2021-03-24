@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject range;
     private float speed = 0.5f;
     private GameObject player;
     private Rigidbody enemyRb;
-    public float intXBounds = 20.0f;//interior bounds of the circle
+    public Vector3 size;
+    private MeshRenderer renderer;
+    public float intXBounds;//interior bounds of the circle
     private float extXBounds;
-    public float intZBounds = 20.0f;//interior bounds of the circle
+    public float intZBounds;//interior bounds of the circle
     private float extZBounds;
     // Start is called before the first frame update
     void Start()
     {
+        range = GameObject.Find("Range");
+        renderer = range.GetComponent<MeshRenderer>();
+        size = renderer.bounds.size;
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-        extXBounds = intXBounds + 10.0f;
-        extZBounds = intZBounds + 10.0f;
+        intXBounds = size.x;
+        extXBounds = intZBounds + 10;
+        intZBounds = size.z;
+        extZBounds = intZBounds + 10;
         Destroy(this.gameObject, 40);
         //speed = player.getSpeed() * .85; this will be added later 
     }
