@@ -40,16 +40,16 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if ((transform.position.x > -intXBounds || transform.position.x < intXBounds) || (transform.position.x > -intZBounds || transform.position.x < intZBounds))
-        //{
-        //    speed = -speed;
-        //}
-        //else if ((transform.position.x < -extXBounds || transform.position.x > extXBounds) || (transform.position.x < -extZBounds || transform.position.x > extZBounds))
-        //{
-        //    speed = -speed;
-        //}
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         enemyRb.AddForce(lookDirection * speed);
+        /*if ((transform.position.x > -intXBounds || transform.position.x < intXBounds) || (transform.position.x > -intZBounds || transform.position.x < intZBounds))
+        {
+            speed = -speed;
+        }
+        else if ((transform.position.x < -extXBounds || transform.position.x > extXBounds) || (transform.position.x < -extZBounds || transform.position.x > extZBounds))
+        {
+            speed = -speed;
+        }*/
     }
     void OnCollisionEnter(Collision other) 
     {

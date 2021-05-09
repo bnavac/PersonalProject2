@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public int[,] numOfFollowers = new int[2, 8];
     Rigidbody playerRb;
     public Vector3 inputs;
+    public GameObject gameController;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
                 numOfFollowers[i,j] = 360 - (45 * j);
             }
         }
+        gameController = GameObject.Find("GameManger");
     }
     int getSpawnAngle(int i, int j) 
     {
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(this.gameObject);
             Debug.Log("Game Over");
+            gameController.GetComponent<GameRestart>().restart = true;
         }
     }
     // Update is called once per frame

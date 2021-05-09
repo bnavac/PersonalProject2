@@ -35,25 +35,25 @@ public class MinionBasic : MonoBehaviour
         if ((enemy.transform.position.x < (currentPos.x + size.x/2) && enemy.transform.position.x > (currentPos.x) && enemy.transform.position.z < (currentPos.z + size.z / 2) && enemy.transform.position.z > (currentPos.z)) && shootCooldown <= 0)
         {
             //Debug.Log("true q1" + enemy.transform.position);
-            Instantiate(projectile, currentPos + q1Pos, enemy.transform.rotation, this.transform);
+            Instantiate(projectile, currentPos + q1Pos, enemy.transform.rotation);
             shootCooldown = 2.5f;
         }
         else if ((enemy.transform.position.x > (currentPos.x - size.x / 2) && enemy.transform.position.x < (currentPos.x) && enemy.transform.position.z < (currentPos.z + size.z / 2) && enemy.transform.position.z > (currentPos.z)) && shootCooldown <= 0)
         {
             //Debug.Log("true q2" + enemy.transform.position);
-            Instantiate(projectile, currentPos + q2Pos, enemy.transform.rotation, this.transform);
+            Instantiate(projectile, currentPos + q2Pos, enemy.transform.rotation);
             shootCooldown = 2.5f;
         }
         else if ((enemy.transform.position.x > (currentPos.x - size.x / 2) && enemy.transform.position.x < (currentPos.x) && enemy.transform.position.z > (currentPos.z - size.z / 2) && enemy.transform.position.z < (currentPos.z)) && shootCooldown <= 0)
         {
             //Debug.Log("true q3" + enemy.transform.position);
-            Instantiate(projectile, currentPos + q3Pos, enemy.transform.rotation, this.transform);
+            Instantiate(projectile, currentPos + q3Pos, enemy.transform.rotation);
             shootCooldown = 2.5f;
         }
         else if((enemy.transform.position.x < (currentPos.x + size.x / 2) && enemy.transform.position.x > (currentPos.x) && enemy.transform.position.z > (currentPos.z - size.z / 2) && enemy.transform.position.z < (currentPos.z)) && shootCooldown <= 0)
         {
             //Debug.Log("true q4" + enemy.transform.position);
-            Instantiate(projectile, currentPos + q4Pos, enemy.transform.rotation, this.transform);
+            Instantiate(projectile, currentPos + q4Pos, enemy.transform.rotation);
             shootCooldown = 2.5f;
         }
     }

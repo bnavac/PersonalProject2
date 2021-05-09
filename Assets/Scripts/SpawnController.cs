@@ -7,7 +7,6 @@ public class SpawnController : MonoBehaviour
 {
     public GameObject[] enemies;
     public GameObject enemy;
-    public GameObject range;
     private GameObject player;
     private Transform playerTransform;
     private float spawnInterval = 3;
@@ -19,7 +18,6 @@ public class SpawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        range = GameObject.Find("Range");
         player = GameObject.Find("Player");
         enemy = GameObject.Find("EnemyBasic Variant");
         playerTransform = player.transform;
@@ -44,7 +42,7 @@ public class SpawnController : MonoBehaviour
         int posZRange = (int)Random.Range(spawnRangeX, spawnRangeX + 10);
         int negZRange = (int)Random.Range(-spawnRangeX, -spawnRangeX - 10);
         bool coinFlip = false;
-        if (Random.Range(0,1) >= 1) 
+        if (Random.Range(0,2) >= 1) 
         {
             coinFlip = true;
         }
