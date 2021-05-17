@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI instructionsText;
     public TextMeshProUGUI timerText;
     public float seconds = 0.0f;
+    private float timer2 = 0.0f;
+    private int time;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,14 +26,13 @@ public class GameManager : MonoBehaviour
     void FixedUpdate()
     {
         seconds += Time.deltaTime;
-        /*timer2 += Time.deltaTime;
+        timer2 += Time.deltaTime;
         if (timer2 >= 1.0f) 
         {
-            seconds2++;
+            time++;
             timer2 = 0.0f;
         }
-        
-        timerText.text = "Time: " + seconds2;*/
+        timerText.text = "Time: " + time;
     }
     public void StartGame() 
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CoolDownFollower : MonoBehaviour
 {
     public GameObject player;
     // Start is called before the first frame update
@@ -14,6 +14,6 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position + new Vector3(0, 40, 0);
+        transform.position = player.transform.position;
     }
 }

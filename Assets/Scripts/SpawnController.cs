@@ -10,7 +10,7 @@ public class SpawnController : MonoBehaviour
     public GameObject gameManager;
     private GameObject player;
     private Transform playerTransform;
-    private float spawnInterval = 3;
+    private float spawnInterval = 2;
     private float startDelay = 1.0f;
     private float spawnRangeX;
     private float spawnRangeZ;
@@ -35,7 +35,7 @@ public class SpawnController : MonoBehaviour
         if (timeDiff < 6) 
         {
             timeDiff = gameManager.GetComponent<GameManager>().seconds / 10;
-            Debug.Log(timeDiff);
+            //Debug.Log(timeDiff);
         }
     }
     IEnumerator spawnEnemy() 
@@ -47,7 +47,7 @@ public class SpawnController : MonoBehaviour
     {
         //int spawnAngle = player.GetComponent<PlayerController>.getgetSpawnAngle();
         spawnInterval = Random.Range(0.1f, 8.0f - timeDiff);
-        //Debug.Log(spawnInterval);
+        Debug.Log(spawnInterval);
         Vector3 playerPos = playerTransform.position;
         int posXRange = (int)Random.Range(spawnRangeX, spawnRangeX + 10);
         int negXRange = (int)Random.Range(-spawnRangeX, -spawnRangeX - 10);
