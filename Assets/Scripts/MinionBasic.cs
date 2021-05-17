@@ -8,9 +8,10 @@ public class MinionBasic : MonoBehaviour
     public GameObject projectile;
     public GameObject range;
     public Vector3 size;
-    private MeshRenderer renderer;
+    public MeshRenderer renderer;
     private float shootCooldown;
     private float shootRatio;
+    private Animator minionAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,7 @@ public class MinionBasic : MonoBehaviour
         Vector3 q2Pos = new Vector3(-1,0,1);
         Vector3 q3Pos = new Vector3(-1,0,-1);
         Vector3 q4Pos = new Vector3(1,0,-1);
+        minionAnim = GetComponent<Animator>();
         if ((enemy.transform.position.x < (currentPos.x + size.x/2) && enemy.transform.position.x > (currentPos.x) && enemy.transform.position.z < (currentPos.z + size.z / 2) && enemy.transform.position.z > (currentPos.z)) && shootCooldown <= 0)
         {
             //Debug.Log("true q1" + enemy.transform.position);

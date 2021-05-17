@@ -12,6 +12,7 @@ public class PlayerFollower : MonoBehaviour
     private Rigidbody followerRb;
     private int speed = 0;
     private int spawnAngle;
+
     //int firstRow = 0;this will be finished later
     //int secondRow = 0;
     // Start is called before the first frame update
@@ -39,7 +40,7 @@ public class PlayerFollower : MonoBehaviour
         }
         else
         {
-            speed = 5;
+            speed = 6;
         }
 
     }

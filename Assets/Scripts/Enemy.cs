@@ -5,11 +5,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public GameObject range;
-    private float speed = 0.5f;
+    private float speed = .25f;
     private GameObject player;
     private Rigidbody enemyRb;
     public Vector3 size;
-    private MeshRenderer renderer;
+    public MeshRenderer renderer;
     public float intXBounds;//interior bounds of the circle
     private float extXBounds;
     public float intZBounds;//interior bounds of the circle
@@ -38,10 +38,15 @@ public class Enemy : MonoBehaviour
         return ((int)intZBounds);
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        player = GameObject.Find("Player");
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
-        enemyRb.AddForce(lookDirection * speed);
+        var p1 = transform.position;
+        var p2 = player.transform.position;
+        var position = new Vector3(p2.x, p1.y, p2.z); // does not bend to target
+        transform.LookAt(position);
+        transform.Translate(lookDirection.x * speed, lookDirection.y * speed, lookDirection.z * speed);
         /*if ((transform.position.x > -intXBounds || transform.position.x < intXBounds) || (transform.position.x > -intZBounds || transform.position.x < intZBounds))
         {
             speed = -speed;
@@ -50,6 +55,7 @@ public class Enemy : MonoBehaviour
         {
             speed = -speed;
         }*/
+        
     }
     void OnCollisionEnter(Collision other) 
     {
