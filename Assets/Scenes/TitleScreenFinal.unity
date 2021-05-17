@@ -648,7 +648,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Do not let the cows get behind you. WASD to move. Last as long as possible.
+  m_text: Do not let the cows get behind you. WASD to move. Last as long as possible. 
+    Double tap W to speed up and Space to clear the screen of enemies. These have
+    long cooldowns..
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

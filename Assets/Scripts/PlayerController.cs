@@ -78,12 +78,12 @@ public class PlayerController : MonoBehaviour
     IEnumerator sprint() 
     {
         Debug.Log("works");
-        speed *= (float)1.5;
+        speed *= (float) 1.5;
         canSprint = false;
         speedCooldown.SetActive(true);
         yield return new WaitForSeconds(10);
         speedCooldown.SetActive(false);
-        speed /= (float)1.5;
+        speed /= (float) 1.5;
         canSprint = true;
     }
     IEnumerator clearScreen() 
