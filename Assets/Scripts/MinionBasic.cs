@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MinionBasic : MonoBehaviour
 {
+    //There are no objects that use this script anymore. The script will remain in case I decided to finish the project.
     public GameObject enemy;
     public GameObject projectile;
     public GameObject range;

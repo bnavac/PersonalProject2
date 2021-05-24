@@ -7,49 +7,91 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Button startButton;
+    //I did not mean to make everything public, but this is how it came out.
+    public Button startButtonEasy;
+    public Button startButtonMed;
+    public Button startButtonHard;
+    public Button startButtonImp;
     public Button instructionsButton;
     public Button backButton;
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI instructionsText;
     public TextMeshProUGUI timerText;
     public float seconds = 0.0f;
-    private float timer2 = 0.0f;
-    private float reference = 1.0f;
-    private double seconds2;
-    private float time;
-
+    public static float difficulty;    
+    public bool diffInc;
     // Start is called before the first frame update
     void Start()
     {
-        time = Time.time;
-
+        diffInc = false;
+        if (difficulty != 0)//Activates the difficulty buttons.
+        {
+            switch (difficulty)
+            {
+                case 1.5f:
+                    Debug.Log("Med");
+                    startButtonMed.gameObject.SetActive(true);
+                    break;
+                case 2.0f:
+                    Debug.Log("Hard");
+                    startButtonHard.gameObject.SetActive(true);
+                    break;
+                case 2.5f:
+                    Debug.Log("Imp");
+                    startButtonImp.gameObject.SetActive(true);
+                    break;
+                default:
+                    Debug.Log("Easy");
+                    startButtonEasy.gameObject.SetActive(true);
+                    break;
+            }
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         seconds += Time.deltaTime;
+        timerText.text = "Time: " + (int)seconds;
+        if (!diffInc && seconds > 30.0f && difficulty != 2.5f)//checking that difficulty only increments once per level.
+        {
+            Debug.Log("Increased");
+            difficulty += .5f;
+            diffInc = true;
+        }
         
     }
-    public void StartGame() 
+    //start game at different difficulties
+    public void StartGameEasy() 
     {
+        difficulty = 1f;
         SceneManager.LoadScene("PersonalProj2Final", LoadSceneMode.Single);
+            
+    }
+    public void StartGameMed()
+    {
+        difficulty = 1.5f;
+        SceneManager.LoadScene("PersonalProj2Final", LoadSceneMode.Single);
+        
+    }
+    public void StartGameHard()
+    {
+        difficulty = 2f;
+        SceneManager.LoadScene("PersonalProj2Final", LoadSceneMode.Single);
+        
+    }
+    public void StartGameImp()
+    {
+        difficulty = 2.5f;
+        SceneManager.LoadScene("PersonalProj2Final", LoadSceneMode.Single);
+        
     }
     public void Instructions() 
     {
-        startButton.gameObject.SetActive(false);
-        instructionsButton.gameObject.SetActive(false);
-        titleText.gameObject.SetActive(false);
-        instructionsText.gameObject.SetActive(true);
-        backButton.gameObject.SetActive(true);
+        SceneManager.LoadScene("InsturctionFinal", LoadSceneMode.Single);
     }
     public void Back()
     {
-        startButton.gameObject.SetActive(true);
-        instructionsButton.gameObject.SetActive(true);
-        titleText.gameObject.SetActive(true);
-        instructionsText.gameObject.SetActive(false);
-        backButton.gameObject.SetActive(false);
+        SceneManager.LoadScene("TitleScreenFinal", LoadSceneMode.Single);
     }
 }

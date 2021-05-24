@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     private float extXBounds;
     public float intZBounds;//interior bounds of the circle
     private float extZBounds;
+    public float difficulty;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +24,13 @@ public class Enemy : MonoBehaviour
         size = renderer.bounds.size;
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-        intXBounds = size.x;
+        intXBounds = size.x;//bounds is used for spawning. Check SpawnManager for more details.
         extXBounds = intZBounds + 10;
         intZBounds = size.z;
         extZBounds = intZBounds + 10;
         Destroy(this.gameObject, 40);
-        //speed = player.getSpeed() * .85; this will be added later 
+        difficulty = GameManager.difficulty;//gets difficulty from gamemanager
+        speed *= difficulty;
     }
     public int getXBounds()
     {
@@ -44,19 +47,12 @@ public class Enemy : MonoBehaviour
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         var p1 = transform.position;
         var p2 = player.transform.position;
-        var position = new Vector3(p2.x, p1.y, p2.z); // does not bend to target
-        transform.LookAt(position);
-        transform.Translate(lookDirection.x * speed, lookDirection.y * speed, lookDirection.z * speed);
-        /*if ((transform.position.x > -intXBounds || transform.position.x < intXBounds) || (transform.position.x > -intZBounds || transform.position.x < intZBounds))
-        {
-            speed = -speed;
-        }
-        else if ((transform.position.x < -extXBounds || transform.position.x > extXBounds) || (transform.position.x < -extZBounds || transform.position.x > extZBounds))
-        {
-            speed = -speed;
-        }*/
+        var position = new Vector3(p2.x, p1.y, p2.z); //Gets the players position.
+        transform.LookAt(position);//Rotates towards the player.
+        transform.Translate(lookDirection.x * speed, lookDirection.y * speed, lookDirection.z * speed);//goes to the player.
         
     }
+    //useless now, might finish over summer
     void OnCollisionEnter(Collision other) 
     {
         if (other.gameObject.CompareTag("Bullet1")) 

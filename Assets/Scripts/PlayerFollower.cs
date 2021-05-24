@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerFollower : MonoBehaviour
 {
+    //This script is useless as no objects use it. This will remain in the case that I decide to finish the project.
     public GameObject followedObject;
     public Transform playerTransform;
     private Vector3 offset;

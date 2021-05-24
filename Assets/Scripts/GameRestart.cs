@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameRestart : MonoBehaviour
@@ -13,7 +12,6 @@ public class GameRestart : MonoBehaviour
     public bool restart;
     public Button restartButton;
     public TextMeshProUGUI gameOverText;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +28,7 @@ public class GameRestart : MonoBehaviour
     {
         SceneManager.LoadScene("RestartSceneFinal", LoadSceneMode.Single);
     }
-    public void GameOver2()
+    public void GameOver2()//Useless, might use later if I decided to finish the game
     {
         SceneManager.LoadScene("TitleScreenFinal", LoadSceneMode.Single);
     }

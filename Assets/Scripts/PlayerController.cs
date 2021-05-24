@@ -9,9 +9,9 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalInput;
     private float forwardInput;
-    private float speed = 15.0f;
+    public float speed = 15.0f;
     public int[,] numOfFollowers = new int[2, 8];
-    Rigidbody playerRb;
+    private Rigidbody playerRb;
     public Vector3 inputs;
     public GameObject gameController;
     private Animator playerAnim;
@@ -19,26 +19,21 @@ public class PlayerController : MonoBehaviour
     public float verticalSpeed = 2.0f;
     public float tapSpeed = 0.1f;
     private float lastTapTime = 0;
-    private bool canSprint = true;
+    private bool canSprint = true;//Bools checking if the player can use powerups.
     private bool canClear = true;
-    public GameObject speedCooldown;
-    public GameObject clearCooldown;
+    public ParticleSystem speedParticle;
+    public ParticleSystem clearParticle;
+    public AudioClip speedSound;
+    public AudioClip clearSound;
+    private AudioSource playerAudio;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
-        /*
-        for (int i = 0; i < numOfFollowers.GetLength(0); i++)
-        {
-            for (int j = 0; j < numOfFollowers.GetLength(1); j++)
-            {
-                numOfFollowers[i,j] = 360 - (45 * j);
-            }
-        }
-        */
         playerAnim = GetComponent<Animator>();
         gameController = GameObject.Find("GameManger");
+        playerAudio = GetComponent<AudioSource>();
     }
     int getSpawnAngle(int i, int j) 
     {
@@ -53,7 +48,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
 
-            if (canSprint && (Time.time - lastTapTime) < tapSpeed)
+            if (canSprint && (Time.time - lastTapTime) < tapSpeed)//activates if the user taps W twice within lastTapTime
             {
                 StartCoroutine(sprint());
             }
@@ -64,10 +59,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(clearScreen());
         }
     }
-    public float getSpeed()
-    {
-        return speed;
-    }
     void OnCollisionEnter(Collision other) 
     {
         if (other.gameObject.CompareTag("Enemy")) 
@@ -77,43 +68,25 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator sprint() 
     {
-        Debug.Log("works");
+        playerAudio.PlayOneShot(speedSound, 1.0f);
+        speedParticle.Play();
         speed *= (float) 1.5;
         canSprint = false;
-        speedCooldown.SetActive(true);
-        yield return new WaitForSeconds(10);
-        speedCooldown.SetActive(false);
+        yield return new WaitForSeconds(10);//Deactivates powerup
         speed /= (float) 1.5;
+        yield return new WaitForSeconds(20);//Allows the user to sprint again
         canSprint = true;
     }
     IEnumerator clearScreen() 
     {
-        Debug.Log("works");
+        playerAudio.PlayOneShot(clearSound, 1.0f);
+        clearParticle.Play();
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
             GameObject.Destroy(enemy);
         canClear = false;
-        clearCooldown.SetActive(true);
         yield return new WaitForSeconds(30);
-        clearCooldown.SetActive(false);
         canClear = true;
     }
-    // Update is called once per frame
-    /*void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            targetPos = UtilsClass.GetMouseWorldPosition();
-            Debug.Log(targetPos);
-            //mouseXInput = Input.GetAxis("Mouse X");
-            //mouseYInput = Input.GetAxis("Mouse Y");
-            //targetPos.x = mouseXInput;
-            //targetPos.z = mouseYInput;
-        }
-        transform.Translate(Vector3.right * Time.deltaTime * targetPos.x * speed);
-        transform.Translate(Vector3.forward * Time.deltaTime * targetPos.y * speed);
-    
-    }
-    */
 
 }

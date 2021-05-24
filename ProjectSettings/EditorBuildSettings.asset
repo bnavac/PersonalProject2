@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RestartSceneFinal.unity
     guid: e7552f4e12280444e9ab864bf082685f
+  - enabled: 1
+    path: Assets/Scenes/InsturctionFinal.unity
+    guid: 43c45436ba350f34d90f24ab389e1857
   m_configObjects: {}

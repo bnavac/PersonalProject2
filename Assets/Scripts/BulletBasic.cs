@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletBasic : MonoBehaviour
 {
+    //There are no objects currently in the game that use this script. They have been removed. This script is being saved due to the possibility of further work on this project.
     private float speed = 100.0f;
     Rigidbody bulletRb;
     public GameObject enemy;
